@@ -24,11 +24,11 @@ function get_file_size($file_name)
         $size .= $file_content[$begin];
     }
 
-    if($size <= kb)
+    if($size < mb)
     {
         return round((int)$size / kb) . "KB";
     }
-    elseif($size <= mb) 
+    elseif($size >= mb && $size < tb) 
     {
         return round((int)$size / mb) . "MB";
     }

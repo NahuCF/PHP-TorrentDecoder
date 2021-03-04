@@ -6,9 +6,12 @@ function bytes_to_mb($size)
 }
 
 
-function get_size_mb($file_name)
+function get_file_size($file_name)
 {
     define("LENGTH_WORD", 7); // lengthi
+    define("kb", 1000);
+    define("mb", 1000000);
+    define("tb", 1000000000);
 
     $size = "";
     $file_content = file_get_contents($file_name);
@@ -21,7 +24,18 @@ function get_size_mb($file_name)
         $size .= $file_content[$begin];
     }
 
-    return bytes_to_mb($size);
+    if($size <= kb)
+    {
+        return round((int)$size / kb) . "KB";
+    }
+    elseif($size <= mb) 
+    {
+        return round((int)$size / mb) . "MB";
+    }
+    else 
+    {
+        return round((int)$size / tb) . "TB";
+    }
 
 }
 
